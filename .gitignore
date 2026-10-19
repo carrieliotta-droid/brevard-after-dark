@@ -1,0 +1,6 @@
+# Local deployment and development files
+.netlify/
+.wrangler/
+.dev.vars
+node_modules/
+.DS_Store

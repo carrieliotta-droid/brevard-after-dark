@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11110f">
+  <meta name="description" content="A verified guide to Halloween events across Brevard County, Florida.">
+  <title>Brevard After Dark — 2026 Halloween Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#events">Skip to events</a>
+  <div class="film-grain" aria-hidden="true"></div>
+  <header class="masthead">
+    <div class="brand-copy">
+      <p class="eyebrow">The Space Coast's uncanny social register</p>
+      <h1>Brevard <em>After Dark</em></h1>
+      <p class="edition">Halloween edition · October 2026</p>
+    </div>
+    <a class="creator-chip" href="https://calendly.com/carrieliotta/30min" target="_blank" rel="noopener">
+      <span>Your local spirit guide</span><strong>Carrie Liotta</strong><small>REAL Broker · Schedule a call</small>
+    </a>
+    <button class="favorites-button" id="favoritesButton" type="button" aria-controls="itinerary" aria-expanded="false">
+      <span>My eerie evening</span><strong id="favoriteCount">0</strong>
+    </button>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="cobweb cobweb-left" aria-hidden="true"></div>
+      <div class="cobweb cobweb-right" aria-hidden="true"></div>
+      <div class="intro-copy">
+        <p class="kicker">Broadcasting live from the old house on the hill</p>
+        <h2 id="intro-title">A frightfully good night out.</h2>
+        <p>Family festivals by daylight. Strange spectacles after sundown. Search the county, save your favorites, and let the house choose when indecision strikes.</p>
+        <div class="hero-actions">
+          <button class="primary-action" id="summonButton" type="button">Wake the crypt</button>
+          <button class="text-action" id="scrollToEvents" type="button">Browse the full register ↓</button>
+        </div>
+      </div>
+      <div class="moon-scene" aria-hidden="true">
+        <div class="lightning lightning-one"></div><div class="lightning lightning-two"></div>
+        <div class="moon"><span class="bat bat-one">⌁</span><span class="bat bat-two">⌁</span></div>
+        <div class="mansion">
+          <span class="address-plaque">1313</span>
+          <span class="tower tower-left"></span><span class="tower tower-right"></span>
+          <span class="roof"></span><span class="house-body"></span>
+          <span class="window w1"></span><span class="window w2"></span><span class="window w3"></span>
+        </div>
+        <div class="graveyard"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="ground-fog fog-one"></div><div class="ground-fog fog-two"></div>
+        <div class="palms palm-one">♠</div><div class="palms palm-two">♠</div>
+      </div>
+    </section>
+
+    <div class="station-break" aria-hidden="true">
+      <span>✦</span><b>Ghouls · Goblins · Good Times</b><span>✦</span><b>One County · Sixty-Four Strange Engagements</b><span>✦</span>
+    </div>
+
+    <section class="controls" aria-label="Event filters">
+      <div class="search-wrap">
+        <label for="searchInput">Ask the talking portrait</label>
+        <div class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search event, city, or venue…" autocomplete="off"></div>
+      </div>
+      <div class="filter-groups">
+        <fieldset>
+          <legend>When</legend>
+          <div class="segmented" id="dateFilters">
+            <button class="active" type="button" data-date="upcoming">Upcoming</button>
+            <button type="button" data-date="weekend">This weekend</button>
+            <button type="button" data-date="halloween">Halloween</button>
+            <button type="button" data-date="all">All dates</button>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Who dares attend?</legend>
+          <div class="segmented" id="audienceFilters">
+            <button class="active" type="button" data-audience="all">Everyone</button>
+            <button type="button" data-audience="family">Families</button>
+            <button type="button" data-audience="adult">Adults</button>
+            <button type="button" data-audience="scary">High scare</button>
+          </div>
+        </fieldset>
+      </div>
+      <div class="quick-toggles">
+        <label><input id="freeOnly" type="checkbox"><span>Free only</span></label>
+        <label><input id="favoritesOnly" type="checkbox"><span>Saved only</span></label>
+      </div>
+    </section>
+
+    <section class="explorer" id="events" aria-labelledby="events-title">
+      <aside class="county-map" aria-label="Stylized map of Brevard County event locations">
+        <div class="map-heading"><span>North</span><strong>Brevard County</strong><span>South</span></div>
+        <div class="map-canvas" id="mapCanvas">
+          <div class="lagoon">Indian River Lagoon</div>
+          <div class="county-shape"></div>
+          <div class="zone-label north">Titusville</div>
+          <div class="zone-label central">Cocoa</div>
+          <div class="zone-label south">Melbourne</div>
+          <div class="zone-label deep-south">Palm Bay</div>
+          <div class="map-markers" id="mapMarkers"></div>
+        </div>
+        <p class="map-note">Select a marker to reveal its engagement.</p>
+      </aside>
+
+      <div class="event-register">
+        <div class="register-heading">
+          <div><p class="kicker">The ghastly gazette</p><h2 id="events-title"><span id="resultCount">0</span> peculiar engagements</h2></div>
+          <label class="sort-control">Sort
+            <select id="sortSelect"><option value="date">Soonest first</option><option value="north">North to south</option><option value="price">Free first</option></select>
+          </label>
+        </div>
+        <div class="active-summary" id="activeSummary" aria-live="polite"></div>
+        <div class="event-list" id="eventList"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="empty-portrait">?</div><h3>The spirits are silent.</h3><p>Try another date, audience, or search.</p><button type="button" id="clearFilters">Clear the cobwebs</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="source-note">
+      <div><p class="kicker">A note from the archivist</p><h2>Plans change. The dead are more dependable.</h2></div>
+      <p>Listings were checked against organizer, venue, city, county, and ticket pages on October 18, 2026. Confirm details at the linked source before leaving—especially weather-sensitive and ticketed events.</p>
+    </section>
+
+    <section class="contact-crypt" aria-labelledby="contact-title">
+      <div class="crypt-portrait" aria-hidden="true"><span>CL</span></div>
+      <div class="crypt-copy">
+        <p class="kicker">The living may inquire within</p>
+        <h2 id="contact-title">Looking for a home with good bones?</h2>
+        <p><strong>Carrie Liotta</strong> of <strong>REAL Broker</strong> knows the Space Coast—from cheerful neighborhoods to houses with a little more… character.</p>
+      </div>
+      <a class="crypt-button" href="https://calendly.com/carrieliotta/30min" target="_blank" rel="noopener">Book a consultation <span>↗</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Brevard After Dark · Curated by <strong>Carrie Liotta, REAL Broker</strong></p>
+    <p class="visit-counter" title="Counts one visit per browser session">Hauntings recorded: <strong id="visitCount">—</strong></p>
+    <a href="https://calendly.com/carrieliotta/30min" target="_blank" rel="noopener">Open the appointment crypt ↗</a>
+  </footer>
+
+  <aside class="itinerary" id="itinerary" aria-hidden="true" aria-labelledby="itinerary-title">
+    <div class="itinerary-header"><div><p class="kicker">Your saved plans</p><h2 id="itinerary-title">An eerie evening</h2></div><button id="closeItinerary" type="button" aria-label="Close itinerary">×</button></div>
+    <div id="itineraryList" class="itinerary-list"></div>
+    <div class="itinerary-footer"><button id="copyItinerary" type="button">Copy itinerary</button><button id="clearItinerary" class="ghost-button" type="button">Clear all</button></div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <dialog id="summonDialog" class="summon-dialog">
+    <button class="dialog-close" id="closeDialog" type="button" aria-label="Close">×</button>
+    <p class="kicker">The house has chosen</p>
+    <div id="summonContent"></div>
+  </dialog>
+
+  <template id="eventTemplate">
+    <article class="event-card">
+      <div class="date-stamp"><span class="month"></span><strong class="day"></strong><span class="weekday"></span></div>
+      <div class="event-main">
+        <div class="event-meta"></div><h3></h3><p class="description"></p>
+        <div class="event-details"><span class="time"></span><span class="venue"></span><span class="price"></span></div>
+        <div class="event-actions"><a class="source-link" target="_blank" rel="noopener">Check details ↗</a><button class="save-button" type="button" aria-pressed="false"><span>♡</span> Save</button></div>
+      </div>
+    </article>
+  </template>
+
+  <script src="events.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "brevard-after-dark",
+  "pages_build_output_dir": "./public",
+  "compatibility_date": "2026-10-19",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "brevard-after-dark-analytics",
+      "database_id": "130b32ba-121d-4ccb-b1f5-18c854b48262"
+    }
+  ]
+}
